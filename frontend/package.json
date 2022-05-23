@@ -1,5 +1,6 @@
 {
   "name": "frontend",
+  "proxy": "https://api.xcess.cloud/users/feed/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,9 +9,11 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "colors": "^1.4.0",
+    "eslint-plugin-react-hooks": "^4.5.0",
     "react": "^18.1.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.1.0",
+    "react-redux": "^8.0.1",
     "react-router-bootstrap": "^0.26.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
