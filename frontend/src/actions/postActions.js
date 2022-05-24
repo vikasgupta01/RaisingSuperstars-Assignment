@@ -8,7 +8,7 @@ import {
   POST_LIST_SUCCESS,
 } from "../constants/postConstants";
 
-export const listPosts = () => async (dispatch) => {
+export const listPosts = (limit, pageNumber) => async (dispatch) => {
   try {
     dispatch({ type: POST_LIST_REQUEST });
 
@@ -21,7 +21,7 @@ export const listPosts = () => async (dispatch) => {
     };
 
     const { data } = await axios.get(
-      "https://api.xcess.cloud/users/feed?limit=10&page=1",
+      `https://api.xcess.cloud/users/feed?limit=${limit}&page=${pageNumber}`,
       config
     );
 

@@ -5,17 +5,19 @@ import { Link } from "react-router-dom";
 // add comments section instead of ratings
 
 const Post = ({ post }) => {
-  console.log("post: ", post);
   return (
     <Card className="my-3 p-3 rounded">
       {post.post.images.length ? (
         <Link to={`/post/${post.post._id}`}>
-          <Card.Img src={post.post.image[0]} variant="top" />
+          <Card.Img
+            src={post.post?.images[0]?.src}
+            variant="top"
+            style={{ width: "50%", height: "50%" }}
+          />
         </Link>
       ) : (
         ""
       )}
-
       <Card.Body>
         <Link to={`/post/${post.post._id}`}>
           <Card.Title as="div">
@@ -32,15 +34,9 @@ const Post = ({ post }) => {
         <Card.Text as="div">
           <strong>Comment:</strong>{" "}
           {post.post.comments.length
-            ? `${post.post.comments[0].body.slice(0, 40)}...`
+            ? `${post.post?.comments[0]?.body.slice(0, 40)}...`
             : "No comments found"}
         </Card.Text>
-        {/* <Card.Text as="div">
-          <strong>Summary:</strong>{" "}
-          {post.post.comments.length
-            ? `${post.post.summary.slice(0, 40)}...`
-            : "No summary found"}
-        </Card.Text> */}
         <Card.Text as="div">
           <strong>Upvotes: </strong>
           {`${post.post.upvotes.length}`}
