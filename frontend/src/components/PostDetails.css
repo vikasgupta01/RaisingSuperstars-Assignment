@@ -8,14 +8,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
 }
 
 .popup-inner {
     position: relative;
-    padding: 32px;
+    padding: 8px;
     width: 100%;
-    max-width: 640px;
+    max-width: 720px;
     background-color: #FFFFFF;
+    overflow-y: auto;
 }
 
 .popup-inner .close-btn {

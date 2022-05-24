@@ -10,19 +10,19 @@ const PostDetails = ({ post, setShowPostDetailsPopup }) => {
   return (
     <div className="popup">
       <div className="popup-inner">
-        <button
-          className="close-btn"
-          onClick={() => setShowPostDetailsPopup(false)}
-        >
-          close
-        </button>
         <Card className="my-3 p-3 rounded">
-          {post.post.images.length
+          <button
+            className="close-btn"
+            onClick={() => setShowPostDetailsPopup(false)}
+          >
+            close
+          </button>
+          {post.post.images?.length
             ? post.post.images.map((image) => (
                 <Card.Img
                   src={image.src}
                   variant="top"
-                  style={{ width: "50%", height: "50%" }}
+                  style={{ width: "30%", height: "30%" }}
                 />
               ))
             : ""}
@@ -33,27 +33,27 @@ const PostDetails = ({ post, setShowPostDetailsPopup }) => {
                 <strong>{post.post.user?.profile?.name}</strong>
               </Card.Title>
             </Link>
-            <Card.Title as="div">
-              <strong>Summary:</strong>{" "}
-              {post.post.comments.length
-                ? `${post.post.summary}`
-                : "No summary found"}
-            </Card.Title>
+            <Card.Text as="div">
+              <strong>Post Body:</strong>{" "}
+              {post.post.content?.length
+                ? `${post.post.content}`
+                : "No content found"}
+            </Card.Text>
             {post.post.comments.length
               ? post.post.comments?.map((comment) => (
                   <Card.Text as="div">
-                    <strong>{comment.user.profile.name}:</strong>{" "}
+                    <strong>{comment.user.profile.name} Commented:</strong>{" "}
                     {`${comment?.body}`}
                   </Card.Text>
                 ))
               : ""}
             <Card.Text as="div">
               <strong>Upvotes: </strong>
-              {`${post.post.upvotes.length}`}
+              {`${post.post.upvotes?.length}`}
             </Card.Text>
             <Card.Text as="div">
               <strong>Downvotes: </strong>
-              {`${post.post.downvotes.length}`}
+              {`${post.post.downvotes?.length}`}
             </Card.Text>
           </Card.Body>
         </Card>
