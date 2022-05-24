@@ -8,7 +8,8 @@ const Post = ({ post }) => {
   return (
     <Card className="my-3 p-3 rounded">
       {post.post.images.length ? (
-        <Link to={`/post/${post.post._id}`}>
+        // <Link to={`/post/${post.post._id}`}>
+        <Link to="#">
           <Card.Img
             src={post.post?.images[0]?.src}
             variant="top"
@@ -19,7 +20,8 @@ const Post = ({ post }) => {
         ""
       )}
       <Card.Body>
-        <Link to={`/post/${post.post._id}`}>
+        {/* <Link to={`/post/${post.post._id}`}> */}
+        <Link to="#">
           <Card.Title as="div">
             <strong>{post.post.user.profile.name}</strong>
           </Card.Title>

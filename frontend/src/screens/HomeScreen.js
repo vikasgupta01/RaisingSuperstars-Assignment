@@ -8,6 +8,7 @@ import Post from "../components/Post";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Pagination from "../components/Pagination";
+import PostDetails from "../components/PostDetails";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -17,10 +18,17 @@ const HomeScreen = () => {
   const { loading, error, posts } = postList;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [showPostDetailsPopup, setShowPostDetailsPopup] = useState(false);
+  const [currentPostIndex, setCurrentPostIndex] = useState(null);
 
   useEffect(() => {
     dispatch(listPosts(10, currentPage));
   }, [currentPage, dispatch]);
+
+  const handleClick = (index) => {
+    setCurrentPostIndex(index);
+    setShowPostDetailsPopup(true);
+  };
 
   return (
     <div>
@@ -31,7 +39,7 @@ const HomeScreen = () => {
         <Message variant="danger">{error}</Message>
       ) : (
         <Row>
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <Col
               key={post.post._id}
               sm={12}
@@ -41,7 +49,9 @@ const HomeScreen = () => {
               className="align-items-stretch d-flex"
             >
               <Link
-                to={`/post/${post.post._id}`}
+                to="#"
+                // to={`/post/${post.post._id}`}
+                onClick={() => handleClick(index)}
                 style={{ textDecoration: "none" }}
               >
                 <Post post={post} />
@@ -54,6 +64,14 @@ const HomeScreen = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
           />
+          {showPostDetailsPopup && currentPostIndex >= 0 ? (
+            <PostDetails
+              post={posts[currentPostIndex]}
+              setShowPostDetailsPopup={setShowPostDetailsPopup}
+            />
+          ) : (
+            ""
+          )}
         </Row>
       )}
     </div>
